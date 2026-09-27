@@ -3,7 +3,7 @@ const router = express.Router();
 const students = require('../data/students');
 
 // Get all students
-router.get('/', (req, res) => {
+router.get('/', (_, res) => {
   res.status(200).json(students);
 });
 
@@ -13,7 +13,7 @@ router.get('/:id', (req, res) => {
   const student = students.find((s) => s.id === studentId);
 
   if (!student) {
-    return res.status(404).json({ message: 'Student not found' });
+    return res.status(404).json({ error: 'Student not found!' });
   }
 
   res.status(200).json(student);
@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
   const { name, age, course } = req.body;
 
   if (!name || !age || !course) {
-    return res.status(400).json({ message: 'Name, age, and course are required' });
+    return res.status(400).json({ error: 'Name, age, and course are required!' });
   }
 
   const newStudent = {
@@ -44,13 +44,13 @@ router.put('/:id', (req, res) => {
   const student = students.find((s) => s.id === studentId);
 
   if (!student) {
-    return res.status(404).json({ message: 'Student not found' });
+    return res.status(404).json({ error: 'Student not found!' });
   }
 
   const { name, age, course } = req.body;
 
   if (!name || !age || !course) {
-    return res.status(400).json({ message: 'Name, age, and course are required' });
+    return res.status(400).json({ error: 'Name, age, and course are required!' });
   }
 
   student.name = name;
@@ -66,11 +66,11 @@ router.delete('/:id', (req, res) => {
   const index = students.findIndex((s) => s.id === studentId);
 
   if (index === -1) {
-    return res.status(404).json({ message: 'Student not found' });
+    return res.status(404).json({ error: 'Student not found!' });
   }
 
   students.splice(index, 1);
-  res.status(200).json({ message: 'Student deleted successfully' });
+  res.status(200).json({ message: 'Student deleted successfully!' });
 });
 
 module.exports = router;
