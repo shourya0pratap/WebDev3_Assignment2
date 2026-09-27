@@ -23,12 +23,14 @@ This repository contains the implementation for **Lab Assignment 2: Student Mana
 
 ``` text
 ├── data/
-│   └── students.js (or students.json)
+│   └── students.js
 ├── middleware/
 │   └── logger.js
 ├── routes/
 │   └── studentRoutes.js
 ├── app.js
+└── package-lock.json
+└── package.json
 └── README.md
 
 ```
